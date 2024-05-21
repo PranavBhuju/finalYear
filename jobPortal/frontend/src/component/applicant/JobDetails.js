@@ -128,18 +128,24 @@ export default function JobDetails(props) {
         <Grid container item width="60%" spacing={2}>
           <Grid item container direction="row"><Typography fontWeight="600">Type</Typography> : {job.jobType}</Grid>
           <Grid item container direction="row"><Typography fontWeight="600">Wage</Typography> : {curencyFormatter.format(job.salary)} / month</Grid>
-          <Grid item container direction="row"><Typography fontWeight="600">Job posting date</Typography> : {postedOn.toLocaleDateString('vi-VN', { month: "long" })}</Grid>
-          <Grid item container direction="row"><Typography fontWeight="600">Submission deadline</Typography> : {deadline.toLocaleDateString('vi-VN', { day: "numeric", month: "long", year: "numeric" })}</Grid>
+          <Grid item container direction="row">
+            <Typography fontWeight="600">Job posting Month</Typography> : {postedOn.toLocaleDateString('en-US', { month: "long" })}
+          </Grid>
+          <Grid item container direction="row">
+            <Typography fontWeight="600">Submission Deadline</Typography> : {deadline.toLocaleDateString('en-US', { day: "numeric", month: "long", year: "numeric" })}
+          </Grid>
           <Grid item container direction="row"><Typography fontWeight="600">Maximum number of applications</Typography> : {job.maxApplicants}</Grid>
 
-          <Grid item container direction="row">
-            <Typography variant="h6" fontWeight="600">Job description</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
+          <Grid item container direction="column">
+            <Typography variant="h6" fontWeight="600" style={{ fontSize: '1rem' }}>Job description</Typography>
+            <Typography style={{ fontSize: '1rem' }}>{job.description}</Typography>
           </Grid>
 
-          <Grid item container direction="row">
-            <Typography variant="h6" fontWeight="600">Request</Typography>
-            <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
+          <Grid item container direction="column">
+            <Typography variant="h6" fontWeight="600" style={{ fontSize: '1rem' }}>Skills Required</Typography>
+            {job.skillsets.map((skill, index) => (
+              <Typography key={index} variant="body1" style={{ fontSize: '1rem' }}>{skill}</Typography>
+            ))}
           </Grid>
 
           <Grid item>
